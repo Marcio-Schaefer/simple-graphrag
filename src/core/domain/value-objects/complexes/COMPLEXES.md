@@ -18,4 +18,4 @@ Todos os objetos de valor complexos devem herdar da classe abstrata `ComplexValu
 
 Nesta pasta há apenas arquivos de implementação que seguem o padrão _PascalCase_ e sem nenhum sufixo, transmitindo clareza de sua responsabilidade, mantendo idioma consistente e sem abreviações obscuras.
 
--
+- [ComplexValueObject.ts](./ComplexValueObject.ts)
