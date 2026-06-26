@@ -11,6 +11,6 @@ export const QUERY_MODES = ["embedding", "keyword", "hybrid"] as const;
 /**
  * Tipo que representa o modo de consulta.
  *
- * @see {QUERY_MODES}
+ * @see QUERY_MODES
  */
 export type QueryMode = (typeof QUERY_MODES)[number];
