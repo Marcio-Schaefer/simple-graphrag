@@ -13,4 +13,4 @@ Representam conceitos do domínio através de tipos primitivos, normalmente util
 
 Nesta pasta há apenas arquivos de implementação que seguem o padrão _PascalCase_ e sem nenhum sufixo, transmitindo clareza de sua responsabilidade, mantendo idioma consistente e sem abreviações obscuras.
 
--
+- [MessageRole.ts](./MessageRole.ts)
