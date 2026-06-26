@@ -2,6 +2,7 @@
 node_modules/
 
 # Bun specific
+bun.lock
 .bun/
 node_modules.bun
 
