@@ -14,6 +14,12 @@ Representa o mundo real do negócio, contendo as regras de negócio centrais da 
 
 > Para mais detalhes, acesse: [src/core/domain](./src/core/domain/DOMAIN.md)
 
+- ### Entities
+
+  Representam objetos de negócio globais e fundamentais da aplicação, encapsulando regras e os dados mais críticos do sistema
+
+  > Para mais detalhes, acesse: [src/core/domain/entities](./src/core/domain/entities/ENTITIES.md)
+
 - ### Value Objects
 
   Representa um conceito de negócio sem identidade própria (ID), definido exclusivamente pelos valores que carrega. Eles são imutáveis, podem ser comparados pelo seu conteúdo e normalmente representam valores puros
