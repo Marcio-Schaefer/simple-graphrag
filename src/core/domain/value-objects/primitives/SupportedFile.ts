@@ -11,6 +11,6 @@ export const SUPPORTED_FILES = [".md", ".txt", ".pdf", ".docx"] as const;
 /**
  * Tipo que representa os arquivos suportados para ingestão de documentos.
  *
- * @see SUPPORTED_FILES
+ * @see {@link SUPPORTED_FILES}
  */
 export type SupportedFile = (typeof SUPPORTED_FILES)[number];

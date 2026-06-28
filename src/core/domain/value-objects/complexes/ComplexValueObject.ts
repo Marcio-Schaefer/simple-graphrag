@@ -16,8 +16,8 @@ export abstract class ComplexValueObject {
   /**
    * Imuta o próprio objeto e todas as suas propriedades aninhadas que sejam objetos ou arrays.
    *
-   * @param {T} obj O objeto a ser imutado.
-   * @returns {T} O objeto imutado.
+   * @param obj O objeto a ser imutado.
+   * @returns O objeto imutado.
    */
   private static deepFreeze<T extends object>(obj: T): T {
     Object.freeze(obj);
@@ -40,9 +40,9 @@ export abstract class ComplexValueObject {
   /**
    * Compara dois valores com suporte a objetos e arrays aninhados.
    *
-   * @param {unknown} a Primeiro valor.
-   * @param {unknown} b Segundo valor.
-   * @returns {boolean} True se são iguais por valor.
+   * @param a Primeiro valor.
+   * @param b Segundo valor.
+   * @returns True se são iguais por valor.
    */
   private static deepEqual(a: unknown, b: unknown): boolean {
     if (a === b) {
@@ -88,10 +88,10 @@ export abstract class ComplexValueObject {
   /**
    * Inicializa o VO garantindo validação e imutabilidade.
    *
-   * @param {T} instance A instância do Value Object.
-   * @returns {Readonly<T>} A instância imutável do Value Object.
+   * @param instance A instância do Value Object.
+   * @returns A instância imutável do Value Object.
    *
-   * @throws {Error} Se a validação falhar, o erro é lançado antes da imutabilidade ser aplicada.
+   * @throws Se a validação falhar, o erro é lançado antes da imutabilidade ser aplicada.
    */
   protected static build<T extends ComplexValueObject>(
     instance: T,
@@ -105,9 +105,9 @@ export abstract class ComplexValueObject {
   /**
    * Valida os atributos do objeto, lançando erro se houver violação de invariantes.
    *
-   * @returns {void} Sem retorno.
+   * @returns Sem retorno.
    *
-   * @throws {Error} Lança um erro se os atributos do objeto forem inválidos.
+   * @throws Lança um erro se os atributos do objeto forem inválidos.
    *
    * @remarks
    * Este método é chamado automaticamente por `build()` e deve conter
@@ -121,7 +121,7 @@ export abstract class ComplexValueObject {
    * Deve retornar uma tupla ou array contendo todos os atributos relevantes
    * para a igualdade do VO. A ordem é importante.
    *
-   * @returns {readonly unknown[]} Os componentes usados para comparação por valor.
+   * @returns Os componentes usados para comparação por valor.
    *
    * @remarks
    * - Primitivos (string, number, boolean) são sempre comparáveis.
@@ -132,8 +132,8 @@ export abstract class ComplexValueObject {
   /**
    * Compara se outro objeto é igual por valor.
    *
-   * @param {ComplexValueObject} other Objeto a ser comparado.
-   * @returns {boolean} True se o objeto for igual por valor, false caso contrário.
+   * @param other Objeto a ser comparado.
+   * @returns True se o objeto for igual por valor, false caso contrário.
    *
    * @remarks
    * - Retorna false se `other` for null, undefined ou de tipo diferente (incluso subclasses).

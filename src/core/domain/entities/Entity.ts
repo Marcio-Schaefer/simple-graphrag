@@ -9,16 +9,16 @@
  */
 export abstract class Entity<TId> {
   /**
-   * @param {TId} id A identidade única da entidade.
+   * @param id A identidade única da entidade.
    */
   protected constructor(public readonly id: TId) {}
 
   /**
    * Compara dois valores com suporte a objetos e arrays aninhados.
    *
-   * @param {unknown} a Primeiro valor.
-   * @param {unknown} b Segundo valor.
-   * @returns {boolean} True se são iguais por valor.
+   * @param a Primeiro valor.
+   * @param b Segundo valor.
+   * @returns True se são iguais por valor.
    */
   protected static deepEqual(a: unknown, b: unknown): boolean {
     if (a === b) {
@@ -64,10 +64,10 @@ export abstract class Entity<TId> {
   /**
    * Inicializa a entidade garantindo validação.
    *
-   * @param {T} instance A instância da Entidade.
-   * @returns {T} A instância da Entidade.
+   * @param instance A instância da Entidade.
+   * @returns A instância da Entidade.
    *
-   * @throws {Error} Se a validação falhar, o erro é lançado.
+   * @throws Se a validação falhar, o erro é lançado.
    */
   protected static build<T extends Entity<unknown>>(instance: T): T {
     instance.validate();
@@ -77,9 +77,9 @@ export abstract class Entity<TId> {
   /**
    * Valida os atributos do objeto, lançando erro se houver violação de invariantes.
    *
-   * @returns {void} Sem retorno.
+   * @returns Sem retorno.
    *
-   * @throws {Error} Lança um erro se os atributos do objeto forem inválidos.
+   * @throws Lança um erro se os atributos do objeto forem inválidos.
    *
    * @remarks
    * Este método é chamado automaticamente por `build()` e deve conter
@@ -90,8 +90,8 @@ export abstract class Entity<TId> {
   /**
    * Compara se outra entidade é igual por identidade.
    *
-   * @param {Entity<TId>} other Entidade a ser comparada.
-   * @returns {boolean} True se a entidade for igual por identidade, false caso contrário.
+   * @param other Entidade a ser comparada.
+   * @returns True se a entidade for igual por identidade, false caso contrário.
    *
    * @remarks
    * - Compara apenas o `id` do objeto

@@ -22,3 +22,4 @@ Nesta pasta há apenas arquivos de implementação que seguem o padrão `PascalC
 transmitindo clareza de sua responsabilidade, mantendo idioma consistente e sem abreviações obscuras.
 
 - [Entity.ts](./Entity.ts)
+- [IngestedDocument.ts](./IngestedDocument.ts)

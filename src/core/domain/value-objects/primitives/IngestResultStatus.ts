@@ -11,6 +11,6 @@ export const INGEST_RESULT_STATUS = ["ok", "skipped", "error"] as const;
 /**
  * Tipo que representa o status do processamento de ingestão de um arquivo.
  *
- * @see INGEST_RESULT_STATUS
+ * @see {@link INGEST_RESULT_STATUS}
  */
 export type IngestResultStatus = (typeof INGEST_RESULT_STATUS)[number];

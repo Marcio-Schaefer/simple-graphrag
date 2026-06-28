@@ -11,6 +11,6 @@ export const MESSAGE_ROLES = ["user", "assistant", "system"] as const;
 /**
  * Tipo que representa o papel do emissor de uma mensagem.
  *
- * @see MESSAGE_ROLES
+ * @see {@link MESSAGE_ROLES}
  */
 export type MessageRole = (typeof MESSAGE_ROLES)[number];
