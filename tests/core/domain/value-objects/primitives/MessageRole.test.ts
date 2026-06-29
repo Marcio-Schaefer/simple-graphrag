@@ -6,13 +6,13 @@ import { MESSAGE_ROLES } from "@/core/domain/value-objects/primitives/MessageRol
 
 describe("MessageRole", () => {
   it("should contain the valid roles", () => {
-    expect(MESSAGE_ROLES).toContain("user");
-    expect(MESSAGE_ROLES).toContain("assistant");
-    expect(MESSAGE_ROLES).toContain("system");
+    expect(Object.values(MESSAGE_ROLES)).toContain("user");
+    expect(Object.values(MESSAGE_ROLES)).toContain("assistant");
+    expect(Object.values(MESSAGE_ROLES)).toContain("system");
   });
 
   it("should have exactly 3 valid roles", () => {
-    expect(MESSAGE_ROLES.length).toBe(3);
+    expect(Object.keys(MESSAGE_ROLES).length).toBe(3);
   });
 });
 

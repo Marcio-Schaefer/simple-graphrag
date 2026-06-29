@@ -6,14 +6,14 @@ import { SUPPORTED_FILES } from "@/core/domain/value-objects/primitives/Supporte
 
 describe("SupportedFile", () => {
   it("should contain the valid files", () => {
-    expect(SUPPORTED_FILES).toContain(".md");
-    expect(SUPPORTED_FILES).toContain(".txt");
-    expect(SUPPORTED_FILES).toContain(".pdf");
-    expect(SUPPORTED_FILES).toContain(".docx");
+    expect(Object.values(SUPPORTED_FILES)).toContain(".md");
+    expect(Object.values(SUPPORTED_FILES)).toContain(".txt");
+    expect(Object.values(SUPPORTED_FILES)).toContain(".pdf");
+    expect(Object.values(SUPPORTED_FILES)).toContain(".docx");
   });
 
   it("should have exactly 4 valid files", () => {
-    expect(SUPPORTED_FILES.length).toBe(4);
+    expect(Object.keys(SUPPORTED_FILES).length).toBe(4);
   });
 });
 
