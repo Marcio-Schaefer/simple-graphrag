@@ -68,6 +68,42 @@ class DifferentValueObject extends ComplexValueObject {
   }
 }
 
+class GenericValueObject extends ComplexValueObject {
+  constructor(public readonly val: any) {
+    super();
+  }
+
+  public static create(val: any): GenericValueObject {
+    return ComplexValueObject.build(
+      new GenericValueObject(val),
+    ) as GenericValueObject;
+  }
+
+  protected validate(): void {}
+
+  protected getEqualityComponents(): readonly unknown[] {
+    return [this.val];
+  }
+}
+
+class DynamicLengthValueObject extends ComplexValueObject {
+  constructor(public readonly props: any[]) {
+    super();
+  }
+
+  public static create(props: any[]): DynamicLengthValueObject {
+    return ComplexValueObject.build(
+      new DynamicLengthValueObject(props),
+    ) as DynamicLengthValueObject;
+  }
+
+  protected validate(): void {}
+
+  protected getEqualityComponents(): readonly unknown[] {
+    return this.props;
+  }
+}
+
 //#endregion
 
 //#region TESTS
@@ -83,6 +119,13 @@ describe("ComplexValueObject", () => {
       const vo = NestedValueObject.create({ a: 1 });
       expect(Object.isFrozen(vo)).toBe(true);
       expect(Object.isFrozen(vo.nestedObj)).toBe(true);
+    });
+
+    it("should not attempt to freeze already frozen nested objects", () => {
+      const frozenObj = Object.freeze({ b: 2 });
+      const vo = NestedValueObject.create({ a: 1, c: frozenObj } as any);
+      expect(Object.isFrozen(vo)).toBe(true);
+      expect(Object.isFrozen(frozenObj)).toBe(true);
     });
   });
 
@@ -137,6 +180,62 @@ describe("ComplexValueObject", () => {
     it("should return false for objects with nested structures that are not equal by value", () => {
       const vo1 = NestedValueObject.create({ a: 1 });
       const vo2 = NestedValueObject.create({ a: 2 });
+      expect(vo1.equals(vo2)).toBe(false);
+    });
+
+    it("should return true for null or undefined values when both are same", () => {
+      const vo1 = GenericValueObject.create(null);
+      const vo2 = GenericValueObject.create(null);
+      expect(vo1.equals(vo2)).toBe(true);
+
+      const vo3 = GenericValueObject.create(undefined);
+      const vo4 = GenericValueObject.create(undefined);
+      expect(vo3.equals(vo4)).toBe(true);
+    });
+
+    it("should return false for null or undefined values when they are different", () => {
+      const vo1 = GenericValueObject.create(null);
+      const vo2 = GenericValueObject.create(undefined);
+      expect(vo1.equals(vo2)).toBe(false);
+
+      const vo3 = GenericValueObject.create(null);
+      const vo4 = GenericValueObject.create(1);
+      expect(vo3.equals(vo4)).toBe(false);
+    });
+
+    it("should return false when types are different", () => {
+      const vo1 = GenericValueObject.create(1);
+      const vo2 = GenericValueObject.create("1");
+      expect(vo1.equals(vo2)).toBe(false);
+    });
+
+    it("should return true for arrays that are deeply equal", () => {
+      const vo1 = GenericValueObject.create([1, 2, [3, 4]]);
+      const vo2 = GenericValueObject.create([1, 2, [3, 4]]);
+      expect(vo1.equals(vo2)).toBe(true);
+    });
+
+    it("should return false for arrays with different lengths", () => {
+      const vo1 = GenericValueObject.create([1, 2]);
+      const vo2 = GenericValueObject.create([1, 2, 3]);
+      expect(vo1.equals(vo2)).toBe(false);
+    });
+
+    it("should return false for arrays with different values", () => {
+      const vo1 = GenericValueObject.create([1, 2]);
+      const vo2 = GenericValueObject.create([1, 3]);
+      expect(vo1.equals(vo2)).toBe(false);
+    });
+
+    it("should return false for objects with different number of keys", () => {
+      const vo1 = GenericValueObject.create({ a: 1, b: 2 });
+      const vo2 = GenericValueObject.create({ a: 1 });
+      expect(vo1.equals(vo2)).toBe(false);
+    });
+
+    it("should return false if equality components have different lengths", () => {
+      const vo1 = DynamicLengthValueObject.create([1, 2]);
+      const vo2 = DynamicLengthValueObject.create([1]);
       expect(vo1.equals(vo2)).toBe(false);
     });
   });
