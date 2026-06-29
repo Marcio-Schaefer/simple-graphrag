@@ -6,11 +6,15 @@
  * - `keyword`: Busca no grafo (relações entre entidades)
  * - `hybrid`: Busca híbrida (grafo + busca vetorial)
  */
-export const QUERY_MODES = ["embedding", "keyword", "hybrid"] as const;
+export const QUERY_MODES = {
+  EMBEDDING: "embedding",
+  KEYWORD: "keyword",
+  HYBRID: "hybrid",
+} as const;
 
 /**
  * Tipo que representa o modo de consulta.
  *
  * @see {@link QUERY_MODES}
  */
-export type QueryMode = (typeof QUERY_MODES)[number];
+export type QueryMode = (typeof QUERY_MODES)[keyof typeof QUERY_MODES];

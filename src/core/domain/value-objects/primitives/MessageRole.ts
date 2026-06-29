@@ -6,11 +6,15 @@
  * - `assistant`: Inteligência artificial ou sistema
  * - `system`: Configurações ou contexto do sistema
  */
-export const MESSAGE_ROLES = ["user", "assistant", "system"] as const;
+export const MESSAGE_ROLES = {
+  USER: "user",
+  ASSISTANT: "assistant",
+  SYSTEM: "system",
+} as const;
 
 /**
  * Tipo que representa o papel do emissor de uma mensagem.
  *
  * @see {@link MESSAGE_ROLES}
  */
-export type MessageRole = (typeof MESSAGE_ROLES)[number];
+export type MessageRole = (typeof MESSAGE_ROLES)[keyof typeof MESSAGE_ROLES];
