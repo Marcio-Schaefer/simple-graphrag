@@ -8,4 +8,6 @@ Representa o mundo real do negócio, contendo as regras de negócio centrais da 
 
 Nesta pasta não há arquivos soltos de implementação, ela é composta apenas por subpastas que seguem o padrão de nomenclatura _kebab-case_.
 
+- [**/entities**](./entities/ENTITIES.md): Representam os conceitos centrais do domínio, possuindo identidade e ciclo de vida.
+
 - [**/value-objects**](./value-objects/VALUE_OBJECTS.md): Objetos que não possui identidade, e são definidos unicamente por seus atributos.
